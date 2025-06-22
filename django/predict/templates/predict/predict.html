@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iris Prediction</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <main>
+        <h1>Iris Flower Prediction</h1>
+        <p>Enter the features of the iris flower to predict its species.</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction %}
+            <h2>Prediction Result</h2>
+            <p>The predicted species is: <strong>{{ prediction.species }}</strong></p>
+        {% endif %}
+    </main>
+</body>
+</html>
